@@ -31,7 +31,7 @@ namespace WebApplicationBasic
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<VigaDbContext>(options => options.UseSqlServer("..."));
+            services.AddDbContext<VigaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc();
         }
 
