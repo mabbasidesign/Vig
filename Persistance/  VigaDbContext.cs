@@ -3,7 +3,7 @@ using Vig.Models;
 
 namespace Vig.Persistance
 {
-    public class   VigaDbContext : DbContext
+    public class VigaDbContext : DbContext
     {
         public VigaDbContext(DbContextOptions<VigaDbContext> options)
             :base(options)
@@ -12,5 +12,6 @@ namespace Vig.Persistance
         }
         public DbSet<Model> Models { get; set; }
         public DbSet<Make> Makes { get; set; }
+        public DbSet<Feature> Features {get; set;}
     }
 }
