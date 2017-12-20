@@ -16,7 +16,7 @@ namespace Vig.Controllers {
             this.context = context;
         }
 
-        [HttpGet ("/api/Makes")]
+        [HttpGet ("/api/makes")]
         public async Task<IEnumerable<MakeResource>> GetMakes () {
             // return await context.Makes.Include(m => m.Models).ToListAsync();
             var makes = await context.Makes.Include (m => m.Models).ToListAsync ();

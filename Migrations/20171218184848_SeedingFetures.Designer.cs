@@ -8,9 +8,10 @@ using Vig.Persistance;
 namespace Viga.Migrations
 {
     [DbContext(typeof(VigaDbContext))]
-    partial class VigaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171218184848_SeedingFetures")]
+    partial class SeedingFetures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
