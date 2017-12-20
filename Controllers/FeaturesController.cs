@@ -16,7 +16,7 @@ namespace Vig.Controllers {
             this.context = context;
         }
 
-        [HttpGet ("/api/Features")]
+        [HttpGet ("/api/features")]
         public async Task<IEnumerable<FeatureResource>> GetFetures()
         {
             var features = await context.Features.ToListAsync();

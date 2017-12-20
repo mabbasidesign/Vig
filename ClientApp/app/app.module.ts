@@ -10,6 +10,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 import { MakeService } from './Services/make.service';
+import { FeatureService } from './Services/feature.service';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -35,7 +36,8 @@ import { MakeService } from './Services/make.service';
     ],
     providers:
     [
-        MakeService
+        MakeService,
+        FeatureService,
     ]
 
 })
