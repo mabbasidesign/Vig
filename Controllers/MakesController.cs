@@ -9,8 +9,10 @@ using Vig.Persistance;
 
 namespace Vig.Controllers {
     public class MakesController : Controller {
+        
         private readonly VigaDbContext context;
         private readonly IMapper mapper;
+
         public MakesController (VigaDbContext context, IMapper mapper) {
             this.mapper = mapper;
             this.context = context;
