@@ -13,9 +13,10 @@ namespace Vig.Controllers
             this.context = context;
         }
 
-        // public IActionResult CreateVehicle(Vehicle vehicle)
-        // {
-            
-        // }
+        [HttpPost]
+        public IActionResult CreateVehicle([FromBody]Vehicle vehicle)
+        {
+            return Ok(vehicle);
+        }
     }
 }
