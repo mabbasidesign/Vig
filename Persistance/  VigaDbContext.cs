@@ -6,6 +6,7 @@ namespace Vig.Persistance
     public class VigaDbContext : DbContext
     {
         // public DbSet<Model> Models { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Make> Makes { get; set; }
         public DbSet<Feature> Features {get; set;}
 

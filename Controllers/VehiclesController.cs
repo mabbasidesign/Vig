@@ -1,4 +1,8 @@
+using System;
+using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Vig.Controllers.Resources;
 using Vig.Models;
 using Vig.Persistance;
 
@@ -8,15 +12,24 @@ namespace Vig.Controllers
     public class VehiclesController : Controller
     {
         private readonly VigaDbContext context;
-        public VehiclesController(VigaDbContext context)
+        private readonly IMapper mapper;
+        public VehiclesController(VigaDbContext context, IMapper mapper)
         {
+            this.mapper = mapper;
             this.context = context;
         }
 
         [HttpPost]
-        public IActionResult CreateVehicle([FromBody]Vehicle vehicle)
+        public async Task<IActionResult> CreateVehicle([FromBody] VehicleResource vehicleResource)
         {
-            return Ok(vehicle);
+            var vehicle = mapper.Map<VehicleResource, Vehicle>(vehicleResource);
+            vehicle.LastUpdate = DateTime.Now;
+
+            context.Vehicles.Add(vehicle);
+            await context.SaveChangesAsync();
+
+            var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
+            return Ok(result);
         }
     }
 }
