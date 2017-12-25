@@ -13,7 +13,7 @@ namespace Vig.Persistance
         }
         public async Task<Vehicle> GetVehicle(int id, bool includeRelated = true)
         {
-            if(includeRelated =! false)
+            if(includeRelated == false)
             return await context.Vehicles.FindAsync(id);
 
             return await context.Vehicles
@@ -33,10 +33,10 @@ namespace Vig.Persistance
             context.Remove(vehicle);
         }
 
-        public async Task<Vehicle> GetVehicleWithMake(int id)
-        {
+        // public async Task<Vehicle> GetVehicleWithMake(int id)
+        // {
 
-        }
+        // }
 
     }
 }

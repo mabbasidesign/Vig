@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Vig.Models;
 
-namespace Vig.Persistance
+namespace Vig.Core
 {
     public interface IVehicleRepository
     {

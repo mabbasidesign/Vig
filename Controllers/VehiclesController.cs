@@ -6,20 +6,21 @@ using Microsoft.EntityFrameworkCore;
 using Vig.Controllers.Resources;
 using Vig.Models;
 using Vig.Persistance;
+using Vig.Core;
 
 namespace Vig.Controllers
 {
     [Route("api/vehicles")]
     public class VehiclesController : Controller
     {
-        private readonly VigaDbContext context;
         private readonly IMapper mapper;
         private readonly IVehicleRepository repository;
-        public VehiclesController(VigaDbContext context, IMapper mapper, IVehicleRepository repository)
+        private readonly IUnitOfWork unitOfWork;
+        public VehiclesController(IUnitOfWork unitOfWork, IMapper mapper, IVehicleRepository repository)
         {
+            this.unitOfWork = unitOfWork;
             this.repository = repository;
             this.mapper = mapper;
-            this.context = context;
         }
 
         [HttpPost]
@@ -32,7 +33,7 @@ namespace Vig.Controllers
             vehicle.LastUpdate = DateTime.Now;
 
             repository.Add(vehicle);
-            await context.SaveChangesAsync();
+            await unitOfWork.CompleteAsync();
 
             vehicle = await repository.GetVehicle(vehicle.Id);
 
@@ -54,7 +55,8 @@ namespace Vig.Controllers
             mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
             vehicle.LastUpdate = DateTime.Now;
 
-            await context.SaveChangesAsync();
+            await unitOfWork.CompleteAsync();
+            vehicle = await repository.GetVehicle(vehicle.Id);
             var result = mapper.Map<Vehicle, VehicleResource>(vehicle);
 
             return Ok(result);
@@ -69,7 +71,7 @@ namespace Vig.Controllers
                 return NotFound();
 
             context.Remove(vehicle);
-            await context.SaveChangesAsync();
+            await unitOfWork.CompleteAsync();
 
             return Ok(id);
         }
