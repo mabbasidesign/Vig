@@ -32,6 +32,7 @@ namespace WebApplicationBasic
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddAutoMapper();
             services.AddDbContext<VigaDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc();

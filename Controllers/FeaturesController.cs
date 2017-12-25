@@ -17,10 +17,10 @@ namespace Vig.Controllers {
         }
 
         [HttpGet ("/api/features")]
-        public async Task<IEnumerable<FeatureResource>> GetFetures()
+        public async Task<IEnumerable<KeyValuePairResource>> GetFetures()
         {
             var features = await context.Features.ToListAsync();
-            return mapper.Map<List<Feature>, List<FeatureResource>>(features);
+            return mapper.Map<List<Feature>, List<KeyValuePairResource>>(features);
         }
     }
 }
